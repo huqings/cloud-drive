@@ -1,28 +1,28 @@
 {
-  "name": "cloud-drive-ui",
+  "name": "main",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
+  "license": "MIT",
   "scripts": {
     "start": "webpack serve",
-    "build": "webpack --mode production",
-    "preview": "npm run build && npx serve out --no-clipboard"
+    "build": "webpack --mode production"
   },
-  "license": "MIT",
   "dependencies": {
-    "axios": "^1.13.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "6.4.2"
+    "@tailwindcss/postcss": "^4.1.17",
+    "dotted-map": "^2.2.3",
+    "garfish": "^1.5.2",
+    "motion": "^12.23.24",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.5"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/preset-react": "^7.13.13",
-    "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^24.10.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "autoprefixer": "^10.4.21",
+    "autoprefixer": "^10.4.22",
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^13.0.1",
     "css-loader": "^6.11.0",
@@ -32,17 +32,13 @@
     "postcss": "^8.5.6",
     "postcss-loader": "^8.2.0",
     "style-loader": "^3.3.4",
-    "tailwindcss": "^4.1.17",
     "ts-loader": "^9.5.4",
     "typescript": "^5.9.3",
-    "webpack": "^5.38.1",
-    "webpack-cli": "^4.7.2",
-    "webpack-dev-server": "^4.0.0"
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
   },
-  "pnpm": {
-    "overrides": {
-      "@types/react": "^19.2.2",
-      "@types/react-dom": "^19.2.2"
-    }
-  }
+  "keywords": [],
+  "author": "",
+  "description": ""
 }

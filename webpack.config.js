@@ -1,35 +1,30 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
+const ExternalTemplateRemotesPlugin = require('external-remotes-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const path = require('path');
 const Dotenv = require('dotenv-webpack');
+const path = require('path');
 
 module.exports = {
-  entry: './src/index',
+  entry: './src/index.tsx',
   mode: 'development',
   devServer: {
     static: [
       path.join(__dirname, 'public')
     ],
-    port: 8010,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
-    allowedHosts: 'all',
+    port: 8000,
     historyApiFallback: {
-      index: '/index.html',
-      disableDotRule: true,
       rewrites: [
-        { from: /^\/$/, to: '/index.html' },
-        { from: /^\/[^.]*$/, to: '/index.html' }
+        { from: /^\/earn$/, to: '/index.html' },
+        { from: /^\/earn\/.*$/, to: '/index.html' },
+        { from: /^\/staking$/, to: '/index.html' },
+        { from: /^\/staking\/.*$/, to: '/index.html' }
       ]
     },
   },
   output: {
-    libraryTarget: 'umd',
-    globalObject: 'window',
     path: path.resolve(__dirname, 'out'),
-    publicPath: '/',
+    publicPath: 'auto',
     clean: true,
     filename: '[name].[contenthash].js',
     chunkFilename: '[name].[contenthash].chunk.js',
@@ -100,17 +95,29 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpe?g|gif|svg|webp)$/i,
+        test: /\.(png|jpe?g|gif|webp)$/i,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8 * 1024, // 8kb
+          },
+        },
+        generator: {
+          filename: 'assets/images/[name].[contenthash][ext]'
+        }
+      },
+      {
+        test: /\.svg$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'assets/images/[name][ext]'
+          filename: 'assets/images/[name].[contenthash][ext]'
         }
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'assets/fonts/[name][ext]'
+          filename: 'assets/fonts/[name].[contenthash][ext]'
         }
       }
     ],

@@ -1,15 +1,10 @@
-import * as React from 'react';
-import App from './App';
-import '@/styles/globals.css';
+import React from 'react'
+import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom';
-import { createRoot } from 'react-dom/client';
+import App from './App'
 
-const RootComponent = () => (
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-);
-
-const container = document.getElementById('root');
-const root = createRoot(container!);
-root.render(<RootComponent />);
+createRoot(document.getElementById('root')!).render(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>,
+)
